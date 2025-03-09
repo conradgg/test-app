@@ -12,10 +12,7 @@ spec:
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:v1.23.2
-    command:
-      - "tail"
-      - "-f"
-      - "/dev/null"
+    command: ["/bin/sh"]
     tty: true
     volumeMounts:
       - name: docker-config
