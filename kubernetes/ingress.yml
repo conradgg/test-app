@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: test-app
+  namespace: test-app
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`test.conradgg.com`)
+    kind: Rule
+    services:
+    - name: test-app
+      port: 80
+    middlewares:
+      - name: custom-headers
