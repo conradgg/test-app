@@ -20,8 +20,7 @@ spec:
         subPath: .dockerconfigjson
   - name: kubectl
     image: bitnami/kubectl:1.32.2
-    command:
-      - cat
+    command: ["/bin/sh"]
     tty: true
   volumes:
   - name: docker-config
