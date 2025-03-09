@@ -14,7 +14,7 @@ spec:
     image: gcr.io/kaniko-project/executor:v1.23.2
     args:
       - "--dockerfile=Dockerfile"
-      - "--context=$(pwd)"
+      - "--context=git://github.com/conradgg/test-app.git"
       - "--destination=fra.vultrcr.com/conradgg/test-app:latest"
     volumeMounts:
       - name: docker-config
@@ -32,23 +32,6 @@ spec:
         }
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/conradgg/test-app.git'
-            }
-        }
-        stage('Build and Push Image') {
-            steps {
-                container('kaniko') {
-                    sh '''
-                      /kaniko/executor \
-                        --dockerfile=Dockerfile \
-                        --context=$(pwd) \
-                        --destination=fra.vultrcr.com/conradgg/test-app:latest
-                    '''
-                }
-            }
-        }
         stage('Deploy to Kubernetes') {
             steps {
                 container('kubectl') {
