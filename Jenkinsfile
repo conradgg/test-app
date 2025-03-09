@@ -45,7 +45,10 @@ spec:
         stage('Deploy to Kubernetes') {
             steps {
                 container('kubectl') {
-                    kubectl apply -f kubernetes/
+                    sh '''
+                        pwd && ls -la
+                        kubectl apply -f kubernetes/
+                    '''
                 }
             }
         }
