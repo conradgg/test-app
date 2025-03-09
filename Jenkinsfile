@@ -16,12 +16,9 @@ spec:
       - "--dockerfile=Dockerfile"
       - "--context=git://github.com/conradgg/test-app.git"
       - "--destination=fra.vultrcr.com/conradgg/test-app:latest"
-    env:
-      - name: GOOGLE_APPLICATION_CREDENTIALS
-        value: /secret/config.json
     volumeMounts:
       - name: docker-config
-        mountPath: /secret
+        mountPath: /kaniko/.docker
   - name: kubectl
     image: bitnami/kubectl:1.32.2
     command:
