@@ -18,7 +18,7 @@ spec:
       - "--destination=fra.vultrcr.com/conradgg/test-app:latest"
     volumeMounts:
       - name: docker-config
-        mountPath: /kaniko/.docker
+        mountPath: /secret
   - name: kubectl
     image: bitnami/kubectl:1.32.2
     command:
