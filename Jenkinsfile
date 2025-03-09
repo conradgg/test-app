@@ -19,7 +19,7 @@ spec:
         mountPath: /kaniko/.docker/config.json
         subPath: .dockerconfigjson
   - name: kubectl
-    image: bitnami/kubectl:1.32.2
+    image: rancher/kubectl:v1.32.2
     command: ["/bin/sh"]
     tty: true
   volumes:
