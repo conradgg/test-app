@@ -45,7 +45,7 @@ spec:
         stage('Deploy to Kubernetes') {
             steps {
                 container('kubectl') {
-                    sh 'kubectl apply -f kubernetes/'
+                    kubectl apply -f kubernetes/
                 }
             }
         }
