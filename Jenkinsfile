@@ -12,7 +12,10 @@ spec:
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:v1.23.2
-    tty: true
+    args:
+      - "--dockerfile=Dockerfile"
+      - "--context=$(pwd)"
+      - "--destination=fra.vultrcr.com/conradgg/test-app:latest"
     volumeMounts:
       - name: docker-config
         mountPath: /kaniko/.docker
