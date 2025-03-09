@@ -11,8 +11,8 @@ spec:
   serviceAccountName: jenkins
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:v1.23.2
-    command: ["/bin/sh"]
+    image: gcr.io/kaniko-project/executor:v1.23.2-debug
+    command: ["/bin/bash"]
     tty: true
     volumeMounts:
       - name: docker-config
