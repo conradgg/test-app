@@ -31,18 +31,13 @@ spec:
         }
     }
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/conradgg/test-app.git'
-            }
-        }
         stage('Build and Push Image') {
             steps {
                 container('kaniko') {
                     sh '''
                       /kaniko/executor \
                         --dockerfile=Dockerfile \
-                        --context=$(pwd) \
+                        --context=git://github.com/conradgg/test-app.git \
                         --destination=fra.vultrcr.com/conradgg/test-app:latest
                     '''
                 }
