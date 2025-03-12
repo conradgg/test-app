@@ -18,11 +18,11 @@ spec:
       - name: docker-config
         mountPath: /kaniko/.docker/config.json
         subPath: .dockerconfigjson
-    - name: helm
-      image: alpine/helm:3.17.1
-      command:
-        - cat
-      tty: true
+      - name: helm
+        image: alpine/helm:3.17.1
+        command:
+          - cat
+        tty: true
   volumes:
   - name: docker-config
     secret:
