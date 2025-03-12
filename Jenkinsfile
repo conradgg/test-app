@@ -46,7 +46,6 @@ spec:
         stage('Deploy to Kubernetes') {
             steps {
                 container('helm') {
-                    git url: 'https://github.com/conradgg/test-app.git'
                     sh '''
                       helm upgrade --install test-app ./helm \
                         --namespace test-app \
