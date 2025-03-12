@@ -18,10 +18,11 @@ spec:
       - name: docker-config
         mountPath: /kaniko/.docker/config.json
         subPath: .dockerconfigjson
-  - name: kubectl
-    image: rancher/kubectl:v1.32.2
-    command: ["/bin/sh"]
-    tty: true
+    - name: helm
+      image: alpine/helm:3.17.1
+      command:
+        - cat
+      tty: true
   volumes:
   - name: docker-config
     secret:
@@ -44,10 +45,13 @@ spec:
         }
         stage('Deploy to Kubernetes') {
             steps {
-                container('kubectl') {
+                container('helm') {
+                    git url: 'https://github.com/conradgg/test-app.git'
                     sh '''
-                        pwd && ls -la
-                        kubectl apply -f kubernetes/
+                      helm upgrade --install test-app ./helm \
+                        --namespace test-app \
+                        --create-namespace \
+                        --set image.tag=latest
                     '''
                 }
             }
