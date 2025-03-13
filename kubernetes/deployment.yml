@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: fra.vultrcr.com/conradgg/test-app:latest
+        image: fra.vultrcr.com/conradgg/test-app:0.0.1-alpha
         ports:
         - containerPort: 80
       imagePullSecrets:
