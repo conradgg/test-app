@@ -18,11 +18,6 @@ spec:
       - name: docker-config
         mountPath: /kaniko/.docker/config.json
         subPath: .dockerconfigjson
-  - name: helm
-    image: alpine/helm:3.17.1
-    command:
-      - cat
-    tty: true
   volumes:
   - name: docker-config
     secret:
@@ -44,16 +39,8 @@ spec:
             }
         }
         stage('Deploy to Kubernetes') {
-            steps {
-                container('helm') {
-                    sh '''
-                      helm upgrade --install test-app ./helm \
-                        --namespace test-app \
-                        --create-namespace \
-                        --set image.tag=latest
-                    '''
-                }
-            }
+            withKubeConfig([namespace: "test-app"]) {
+                sh 'kubectl apply -f kubernetes/'
         }
     }
 }
