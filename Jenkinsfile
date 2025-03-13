@@ -41,6 +41,7 @@ spec:
         stage('Deploy to Kubernetes') {
             withKubeConfig([namespace: "test-app"]) {
                 sh 'kubectl apply -f kubernetes/'
+            }
         }
     }
 }
