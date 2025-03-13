@@ -41,7 +41,15 @@ spec:
         stage('Deploy to Kubernetes') {
             steps {
                 withKubeConfig([namespace: "test-app"]) {
-                    sh 'kubectl apply -f kubernetes/'
+                    sh '''
+                      if ! command -v kubectl >/dev/null 2>&1; then
+                        echo "kubectl not found. Downloading..."
+                        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+                        chmod +x kubectl
+                        mv kubectl /usr/local/bin/kubectl
+                      fi
+                      kubectl apply -f kubernetes/
+                    '''
                 }
             }
         }
