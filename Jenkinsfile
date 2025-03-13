@@ -33,7 +33,7 @@ spec:
                       /kaniko/executor \
                         --dockerfile=Dockerfile \
                         --context=git://github.com/conradgg/test-app.git \
-                        --destination=fra.vultrcr.com/conradgg/test-app:latest
+                        --destination=fra.vultrcr.com/conradgg/test-app:0.0.1-alpha
                     '''
                 }
             }
