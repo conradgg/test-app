@@ -18,6 +18,8 @@ spec:
         image: fra.vultrcr.com/conradgg/test-app:latest
         ports:
         - containerPort: 80
+      imagePullSecrets:
+        - name: vultr-cr-credentials
 ---
 apiVersion: v1
 kind: Service
